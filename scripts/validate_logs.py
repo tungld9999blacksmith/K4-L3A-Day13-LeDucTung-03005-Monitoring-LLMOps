@@ -48,6 +48,7 @@ def main() -> None:
                 missing_required += 1
             
             if not ENRICHMENT_FIELDS.issubset(rec.keys()):
+                print(rec)
                 missing_enrichment += 1
 
         # Check raw PII independently from the student's scrubbing implementation.

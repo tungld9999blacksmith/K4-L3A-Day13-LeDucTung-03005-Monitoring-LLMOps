@@ -10,3 +10,4 @@ config/challenge.json
 .pytest_cache/
 .antigravity/
 .claude
+personal/
