@@ -40,6 +40,7 @@ class FakeLLM:
             as_type="generation",
             model=self.model,
             input={"prompt": summarize_text(prompt)},
+
         ) as gen_obs:
             started = time.perf_counter()
             time.sleep(0.05)  # mô phỏng thời điểm token đầu tiên sẵn sàng
@@ -59,6 +60,10 @@ class FakeLLM:
                 usage_details={
                     "input_tokens": input_tokens,
                     "output_tokens": output_tokens,
+                },
+                cost_details={
+                    "input": input_tokens / 1_000_000 * 3,
+                    "output": output_tokens / 1_000_000 * 15,
                 },
             )
 

@@ -11,3 +11,4 @@ config/challenge.json
 .antigravity/
 .claude
 personal/
+.idea/

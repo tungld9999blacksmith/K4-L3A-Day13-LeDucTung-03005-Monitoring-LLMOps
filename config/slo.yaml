@@ -7,7 +7,31 @@ primary_slo:
     total_event: 'event == "request_received"'
   target_percent: 99.5
   error_budget_percent: 0.5
-  note: Học viên phải giải thích hoặc điều chỉnh ngưỡng bằng baseline của mình.
+  # Baseline đo trên máy local ngày 2026-09-29 (load_test.py, concurrency 5).
+  baseline:
+    source: [data/logs.baseline.jsonl, data/logs.jsonl]
+    requests: 81
+    failed_requests: 0
+    latency_p50_ms: 153
+    latency_p95_ms: 1265
+    latency_p99_ms: 1284
+    latency_max_ms: 2536
+  rationale: >-
+    Giữ ngưỡng 3000 ms: baseline P95 ~1.3 s, P99 ~1.3 s, max ~2.5 s nên
+    ngưỡng có dư ~2x so với P95 để không báo động giả khi tải dao động,
+    nhưng vẫn đủ chặt để bắt incident rag_slow (retrieval +2.5 s đẩy
+    latency lên ~2.6-3.8 s). Target 99.5% vì baseline không có request
+    lỗi; 99.9% quá chặt với lab chỉ vài trăm request (1 request chậm đã
+    vượt budget), còn 99% quá lỏng với chatbot hướng người dùng.
+  error_budget:
+    formula: '(100 - target_percent) / 100 * total_requests'
+    per_1000_requests: 5
+    time_based_28d_minutes: 201.6  # 0.5% * 28 * 24 * 60 = 201.6 phút ~ 3.36 giờ
+    policy: >-
+      Nếu dùng hết > 50% budget trong 7 ngày: ưu tiên sửa độ tin cậy,
+      tạm dừng promote prompt/model mới. Nếu hết 100%: freeze release,
+      chỉ rollback hoặc hotfix.
+  note: Ngưỡng đã được giải thích bằng baseline ở trên.
 guardrails:
   error_rate_pct_max: 2
   daily_cost_usd_max: 2.5
