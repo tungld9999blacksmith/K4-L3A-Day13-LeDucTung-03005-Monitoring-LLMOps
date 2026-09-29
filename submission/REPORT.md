@@ -8,7 +8,7 @@
 - **MSSV:** 03005
 - **Lớp:** K4-L3A
 - **Repository URL:** <https://github.com/tungld9999blacksmith/K4-L3A-Day13-LeDucTung-03005-Monitoring-LLMOps>
-- **Commit SHA cuối:** 13b606680ae4a3072eda90334959b632fe4ecba0
+- **Commit SHA cuối:** b7695c3d38615012ea4da532e208819049403693
 - **Challenge ID:** `day13-k4-l3a-monitoring-llmops-v1`
 - **Tên project Langfuse cá nhân:** `day13-k4-l3a-03005`
 
