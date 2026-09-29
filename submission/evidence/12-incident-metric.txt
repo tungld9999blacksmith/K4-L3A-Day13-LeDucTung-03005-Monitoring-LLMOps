@@ -1,0 +1,6 @@
+Nguon: data/logs.jsonl (event=response_sent) - cung cong thuc voi dashboard/app.py
+Challenge: day13-k4-l3a-monitoring-llmops-v1 | incident window 11:37:00Z (incident_enabled) -> 11:42:39Z (incident_disabled)
+
+Truoc incident (sample queries): n=10 | latency P50=153 P95=1484 max=1484 ms | TTFT P95=57 ms | errors=0 | avg cost=$0.002031 | avg quality=0.88
+Trong incident (challenge, feature=monitoring): n=5 | latency P50=2653 P95=2667 max=2667 ms | TTFT P95=50 ms | errors=0 | avg cost=$0.002169 | avg quality=0.84
+Sau fix (challenge, cung 5 query): n=5 | latency P50=152 P95=152 max=152 ms | TTFT P95=50 ms | errors=0 | avg cost=$0.002088 | avg quality=0.84
