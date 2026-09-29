@@ -71,8 +71,9 @@ class LabAgent:
                 },
                 version=prompt.version,
             )
-            # TODO (CP2): instrument retrieve() and FakeLLM.generate() as child
-            # observations. The nested generation must receive prompt, usage and cost.
+            # CP2: retrieve() and FakeLLM.generate() are now instrumented as child
+            # observations (retriever and generation types). The generation captures
+            # prompt, usage, and model; it is linked to the managed prompt via propagate_attributes.
             with propagate_attributes(prompt=prompt.managed_prompt):
                 response = self.llm.generate(prompt.text)
             quality_score = self._heuristic_quality(message, response.text, docs)
